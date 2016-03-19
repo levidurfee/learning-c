@@ -1,9 +1,26 @@
+IDIR =./include
 CC=gcc
-CFLAGS=-I.
-DEPS = levi.h
+CFLAGS=-I$(IDIR)
 
-%.o: %.c $(DEPS)
+ODIR=./src/obj
+LDIR =./lib
+
+LIBS=-lm
+
+_DEPS = levi.h
+DEPS = $(patsubst %,$(IDIR)/%,$(_DEPS))
+
+_OBJ = main.o levi.o 
+OBJ = $(patsubst %,$(ODIR)/%,$(_OBJ))
+
+
+$(ODIR)/%.o: %.c $(DEPS)
 	$(CC) -c -o $@ $< $(CFLAGS)
 
-main: main.o levi.o 
-	gcc -o levi main.o levi.o -I.
+main: $(OBJ)
+	gcc -o $@ $^ $(CFLAGS) $(LIBS)
+
+.PHONY: clean
+
+clean:
+	rm -f $(ODIR)/*.o *~ core $(INCDIR)/*~ 
