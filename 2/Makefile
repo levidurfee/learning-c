@@ -7,10 +7,10 @@ LDIR =./lib
 
 LIBS=-lm
 
-_DEPS = levi.h
+_DEPS = levi.h durfee.h
 DEPS = $(patsubst %,$(IDIR)/%,$(_DEPS))
 
-_OBJ = main.o levi.o 
+_OBJ = main.o levi.o durfee.o
 OBJ = $(patsubst %,$(ODIR)/%,$(_OBJ))
 
 

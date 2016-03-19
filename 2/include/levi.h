@@ -1,1 +1,1 @@
-int levi(char * name);
+void levi(char * name);

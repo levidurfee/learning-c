@@ -3,6 +3,6 @@
 
 #define LEVI_VERSION 1.0.0
 
-int levi(char * name) {
+void levi(char * name) {
     printf("%s Levi\r\n", name);
 }
