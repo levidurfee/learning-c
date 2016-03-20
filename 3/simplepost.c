@@ -13,7 +13,7 @@
 #define API_URL "https://api.ween.io"
 
 typedef struct {
-  char * message;
+  char *message;
   char *v;
 } ween_data;
 
