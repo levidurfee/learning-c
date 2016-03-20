@@ -3,7 +3,7 @@
  * \ V  V /  __/  __/ | | |
  *  \_/\_/ \___|\___|_| |_|
  * Command Line App
- * Version 0.3.0
+ * Version 0.4.0
  */
 #include <stdio.h>
 #include <string.h>
