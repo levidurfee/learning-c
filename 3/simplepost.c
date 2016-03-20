@@ -3,7 +3,7 @@
  * \ V  V /  __/  __/ | | |
  *  \_/\_/ \___|\___|_| |_|
  * Command Line App
- * Version 0.4.0
+ * Version 0.5.0
  */
 #include <stdio.h>
 #include <string.h>
@@ -60,9 +60,6 @@ int main(int argc, char *argv[])
 
   CURL *curl;
   CURLcode res;
-
-  /*sprintf(postdata, "messageTitle=%s&messageBody=%s&messagePassphrase=%s&messageDeleteAfterFirstView=%s", argv[1], argv[2], argv[3], argv[4]);*/
-  /*printf("%s\n", postdata);*/
 
   curl = curl_easy_init();
   if(curl) {
