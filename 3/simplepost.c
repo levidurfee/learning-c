@@ -32,7 +32,7 @@ int main(void)
   CURL *curl;
   CURLcode res;
 
-  static const char *postthis="messageTitle=hello&messageBody=hello&messagePassphrase=test";
+  static const char *postthis="messageTitle=hello&messageBody=hello&messagePassphrase=test&messageDeleteAfterFirstView=1";
 
   curl = curl_easy_init();
   if(curl) {
