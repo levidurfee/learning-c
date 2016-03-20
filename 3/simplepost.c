@@ -1,6 +1,9 @@
-/* <DESC>
- * Very simple HTTP POST
- * </DESC>
+/*__      _____  ___ _ __  
+ *\ \ /\ / / _ \/ _ \ '_ \ 
+ * \ V  V /  __/  __/ | | |
+ *  \_/\_/ \___|\___|_| |_|
+ * Command Line App
+ * Version 0.1.0
  */
 #include <stdio.h>
 #include <string.h>
