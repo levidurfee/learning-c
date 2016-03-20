@@ -18,7 +18,7 @@ $(ODIR)/%.o: %.c $(DEPS)
 	$(CC) -c -o $@ $< $(CFLAGS)
 
 main: $(OBJ)
-	gcc -o $@ $^ $(CFLAGS) $(LIBS)
+	gcc -g -o $@ $^ $(CFLAGS) $(LIBS)
 
 .PHONY: clean
 
