@@ -1,5 +1,4 @@
 #include <stdio.h>
-#include <signal.h>
 #include "main.h"
 #include "levi.h"
 #include "durfee.h"
