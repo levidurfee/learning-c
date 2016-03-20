@@ -11,6 +11,13 @@
 
 #define MAX_LEN 80
 
+typedef struct {
+  char * message;
+  char *v;
+} ween_data;
+
+void get_ween(ween_data * w);
+
 int main(int argc, char *argv[])
 {
   char messageTitle[MAX_LEN];
@@ -18,39 +25,27 @@ int main(int argc, char *argv[])
   char messagePassphrase[MAX_LEN];
   char messageDeleteAfterFirstView[MAX_LEN];
 
+  ween_data title;
+  title.message = "What is the title of your message? ";
+  title.v = messageTitle;
+  get_ween(&title);
+
+  ween_data body;
+  body.message = "What is your message? ";
+  body.v = messageBody;
+  get_ween(&body);
+
+  ween_data passphrase;
+  passphrase.message = "What is the passphrase? ";
+  passphrase.v = messagePassphrase;
+  get_ween(&passphrase);
+
+  ween_data deleteafter;
+  deleteafter.message = "Delete after first view (1 yes | 0 no)? ";
+  deleteafter.v = messageDeleteAfterFirstView;
+  get_ween(&deleteafter);
+
   char postdata[2048];
-
-  printf("What is the title of your message? ");
-  /* Get the input, with size limit. */
-  fgets(messageTitle, MAX_LEN, stdin);
-   /* Remove trailing newline, if there. */
-  if ((strlen(messageTitle)>0) && (messageTitle[strlen (messageTitle) - 1] == '\n')) {
-    messageTitle[strlen (messageTitle) - 1] = '\0';
-  }
-
-  printf("What is your message? ");
-  /* Get the input, with size limit. */
-  fgets(messageBody, MAX_LEN, stdin);
-   /* Remove trailing newline, if there. */
-  if ((strlen(messageBody)>0) && (messageBody[strlen (messageBody) - 1] == '\n')) {
-    messageBody[strlen (messageBody) - 1] = '\0';
-  }
-
-  printf("What is the passphrase? ");
-  /* Get the input, with size limit. */
-  fgets(messagePassphrase, MAX_LEN, stdin);
-   /* Remove trailing newline, if there. */
-  if ((strlen(messagePassphrase)>0) && (messagePassphrase[strlen (messagePassphrase) - 1] == '\n')) {
-    messagePassphrase[strlen (messagePassphrase) - 1] = '\0';
-  }
-
-  printf("Delete after first view (1 yes | 0 no)? ");
-  /* Get the input, with size limit. */
-  fgets(messageDeleteAfterFirstView, MAX_LEN, stdin);
-   /* Remove trailing newline, if there. */
-  if ((strlen(messageDeleteAfterFirstView)>0) && (messageDeleteAfterFirstView[strlen (messageDeleteAfterFirstView) - 1] == '\n')) {
-    messageDeleteAfterFirstView[strlen (messageDeleteAfterFirstView) - 1] = '\0';
-  }
 
   sprintf(postdata, "messageTitle=%s&messageBody=%s&messagePassphrase=%s&messageDeleteAfterFirstView=%s", messageTitle, messageBody, messagePassphrase, messageDeleteAfterFirstView);
 
@@ -81,4 +76,12 @@ int main(int argc, char *argv[])
   }
   printf("\r\n");
   return 0;
+}
+
+void get_ween(ween_data * w) {
+  printf("%s", w->message);
+  fgets(w->v, MAX_LEN, stdin);
+  if ((strlen(w->v)>0) && (w->v[strlen (w->v) - 1] == '\n')) {
+    w->v[strlen (w->v) - 1] = '\0';
+  }
 }
