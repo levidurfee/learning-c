@@ -48,7 +48,11 @@ int main(int argc, char *argv[])
 
   char postdata[2048];
 
-  sprintf(postdata, "messageTitle=%s&messageBody=%s&messagePassphrase=%s&messageDeleteAfterFirstView=%s", messageTitle, messageBody, messagePassphrase, messageDeleteAfterFirstView);
+  if(strlen(messagePassphrase) > 0) {
+    sprintf(postdata, "messageTitle=%s&messageBody=%s&messagePassphrase=%s&messageDeleteAfterFirstView=%s", messageTitle, messageBody, messagePassphrase, messageDeleteAfterFirstView);
+  } else {
+    sprintf(postdata, "messageTitle=%s&messageBody=%s&messageDeleteAfterFirstView=%s", messageTitle, messageBody, messageDeleteAfterFirstView);
+  }
 
   CURL *curl;
   CURLcode res;
