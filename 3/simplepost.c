@@ -14,11 +14,11 @@ int main(int argc, char *argv[])
   CURL *curl;
   CURLcode res;
 
-  static const char *postthis="messageTitle=hello&messageBody=hello&messagePassphrase=test&messageDeleteAfterFirstView=1";
+  /*static const char *postthis="messageTitle=hello&messageBody=hello&messagePassphrase=test&messageDeleteAfterFirstView=1";*/
 
   char postdata[2048];
   sprintf(postdata, "messageTitle=%s&messageBody=%s&messagePassphrase=%s&messageDeleteAfterFirstView=%s", argv[1], argv[2], argv[3], argv[4]);
-  printf("%s", postdata);
+  /*printf("%s\n", postdata);*/
 
   curl = curl_easy_init();
   if(curl) {
@@ -27,7 +27,7 @@ int main(int argc, char *argv[])
 
     /* if we don't provide POSTFIELDSIZE, libcurl will strlen() by
        itself */
-    curl_easy_setopt(curl, CURLOPT_POSTFIELDSIZE, (long)strlen(postthis));
+    curl_easy_setopt(curl, CURLOPT_POSTFIELDSIZE, (long)strlen(postdata));
 
     /* Perform the request, res will get the return code */
     res = curl_easy_perform(curl);
