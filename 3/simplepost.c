@@ -3,13 +3,14 @@
  * \ V  V /  __/  __/ | | |
  *  \_/\_/ \___|\___|_| |_|
  * Command Line App
- * Version 0.2.0
+ * Version 0.3.0
  */
 #include <stdio.h>
 #include <string.h>
 #include <curl/curl.h>
 
 #define MAX_LEN 80
+#define API_URL "https://api.ween.io"
 
 typedef struct {
   char * message;
@@ -57,7 +58,7 @@ int main(int argc, char *argv[])
 
   curl = curl_easy_init();
   if(curl) {
-    curl_easy_setopt(curl, CURLOPT_URL, "https://api.ween.io");
+    curl_easy_setopt(curl, CURLOPT_URL, API_URL);
     curl_easy_setopt(curl, CURLOPT_POSTFIELDS, postdata);
 
     /* if we don't provide POSTFIELDSIZE, libcurl will strlen() by
