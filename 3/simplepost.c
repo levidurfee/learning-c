@@ -48,6 +48,10 @@ int main(int argc, char *argv[])
 
   char postdata[2048];
 
+  if((strlen(messageDeleteAfterFirstView) == 0) || ((int)*messageDeleteAfterFirstView > 1)) {
+    *messageDeleteAfterFirstView = *"1";
+  }
+
   if(strlen(messagePassphrase) > 0) {
     sprintf(postdata, "messageTitle=%s&messageBody=%s&messagePassphrase=%s&messageDeleteAfterFirstView=%s", messageTitle, messageBody, messagePassphrase, messageDeleteAfterFirstView);
   } else {
