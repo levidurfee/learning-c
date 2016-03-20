@@ -17,11 +17,13 @@ int main() {
   insert(test_list,8);
   insert(test_list,4);
   insert(test_list,3);
+  insert(test_list,399);
+  insert(test_list,1);
   printDFS(test_list);
 }
 
 void insert(node_t * tree,int val) {
-  if(tree->val==NULL)tree->val=val;
+  if(tree->val=='\0')tree->val=val;
   else if(val<tree->val)
     if(tree->left!=NULL)insert(tree->left,val);
     else{
@@ -45,6 +47,6 @@ void print_tree(node_t * current) {
 
 void printDFS(node_t * current) {
   if(current->left!=NULL) printDFS(current->left);
-  if(current!=NULL)printf("%d ",current->val);
+  if(current!=NULL)printf("%d \n",current->val);
   if(current->right!=NULL)printDFS(current->right);
 }
