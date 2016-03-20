@@ -32,11 +32,11 @@ int main(void)
   CURL *curl;
   CURLcode res;
 
-  static const char *postthis="moo mooo moo moo";
+  static const char *postthis="messageTitle=hello&messageBody=hello&messagePassphrase=test";
 
   curl = curl_easy_init();
   if(curl) {
-    curl_easy_setopt(curl, CURLOPT_URL, "http://requestb.in/1j6hxxo1");
+    curl_easy_setopt(curl, CURLOPT_URL, "https://api.ween.io");
     curl_easy_setopt(curl, CURLOPT_POSTFIELDS, postthis);
 
     /* if we don't provide POSTFIELDSIZE, libcurl will strlen() by
@@ -53,5 +53,6 @@ int main(void)
     /* always cleanup */
     curl_easy_cleanup(curl);
   }
+  printf("\r\n");
   return 0;
 }
