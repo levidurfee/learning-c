@@ -1,9 +1,27 @@
-#include <my_global.h>
+#include <stdio.h>
+#include <string.h>
 #include <mysql/mysql.h>
+
+#define MAX_LEN 50
 
 void finish_with_error(MYSQL *con) {
     fprintf(stderr, "%s\n", mysql_error(con));
     mysql_close(con);
+}
+
+void add_record(MYSQL *con) {
+    char name[MAX_LEN];
+    char query[255];
+    printf("What name would you like to add? [blank to skip] ");
+    fgets(name, MAX_LEN, stdin);
+    if(strlen(name) > 1) {
+        name[strlen(name) - 1] = '\0';
+        sprintf(query, "INSERT INTO people (name) VALUES ('%s')", name);
+        printf("%s\n", query);
+        if(mysql_query(con, query)) {
+            finish_with_error(con);
+        }
+    }
 }
 
 int main()
@@ -20,6 +38,8 @@ int main()
         finish_with_error(con);
         return 1;
     }
+
+    add_record(con);
 
     if(mysql_query(con, "SELECT name FROM people")) {
         finish_with_error(con);
