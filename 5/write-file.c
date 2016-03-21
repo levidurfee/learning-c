@@ -1,12 +1,13 @@
 #include <stdio.h>
 #include <time.h>
 #include <sys/timeb.h>
+#include <sys/stat.h>
 
 int fill_file();
 
 int main() {
     int i = 0;
-    while(i < 10000000) {
+    while(i < 1000000000) {
         fill_file();
         i++;
     }
@@ -15,14 +16,17 @@ int main() {
 
 int fill_file() {
     char file[50];
+    char dir[50];
     struct timeb tmb;
     ftime(&tmb);
 
     time_t seconds;
     seconds = time(NULL);
+    snprintf(dir, sizeof dir, "txt/%ld", seconds);
+    mkdir(dir, S_IRWXU);
     printf("%ld-%d.txt\n", seconds, tmb.millitm);
 
-    snprintf(file, sizeof file, "txt/%ld-%d.txt", seconds, tmb.millitm);
+    snprintf(file, sizeof file, "txt/%ld/%ld-%d.txt", seconds, seconds, tmb.millitm);
     FILE *f = fopen(file, "a");
     if (f == NULL)
     {
