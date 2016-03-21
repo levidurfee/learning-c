@@ -3,18 +3,20 @@
 #include <sys/timeb.h>
 #include <sys/stat.h>
 
-int fill_file();
+int fill_file(char *rdir);
 
-int main() {
+int main(int argc, char **argv) {
     int i = 0;
-    while(i < 1000000000) {
-        fill_file();
+    mkdir(argv[1], S_IRWXU);
+    while(i < 10000000000) {
+        fill_file(argv[1]);
         i++;
     }
     return 0;
 }
 
-int fill_file() {
+int fill_file(char *rdir) {
+    /*printf("%s\n", rdir);*/
     char file[50];
     char dir[50];
     struct timeb tmb;
@@ -22,11 +24,11 @@ int fill_file() {
 
     time_t seconds;
     seconds = time(NULL);
-    snprintf(dir, sizeof dir, "txt/%ld", seconds);
+    snprintf(dir, sizeof dir, "%s/%ld", rdir, seconds);
     mkdir(dir, S_IRWXU);
     printf("%ld-%d.txt\n", seconds, tmb.millitm);
 
-    snprintf(file, sizeof file, "txt/%ld/%ld-%d.txt", seconds, seconds, tmb.millitm);
+    snprintf(file, sizeof file, "%s/%ld/%ld-%d.txt", rdir, seconds, seconds, tmb.millitm);
     FILE *f = fopen(file, "a");
     if (f == NULL)
     {
