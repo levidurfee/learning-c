@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <time.h>
+#include <sys/timeb.h>
 
 int fill_file();
 
@@ -14,11 +15,14 @@ int main() {
 
 int fill_file() {
     char file[50];
+    struct timeb tmb;
+    ftime(&tmb);
+
     time_t seconds;
     seconds = time(NULL);
-    printf("%ld.txt\n", seconds);
+    printf("%ld-%d.txt\n", seconds, tmb.millitm);
 
-    snprintf(file, sizeof file, "txt/%ld.txt", seconds);
+    snprintf(file, sizeof file, "txt/%ld-%d.txt", seconds, tmb.millitm);
     FILE *f = fopen(file, "a");
     if (f == NULL)
     {
